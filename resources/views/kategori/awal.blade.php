@@ -1,88 +1,89 @@
 @extends('main')
 @section('title','Dhasboard')
-@section('breadcrumbs')
-<div class="breadcrumbs">
-    <div class="col-sm-4">
-        <div class="page-header float-left">
-            <div class="page-title">
-                <h1>kategori</h1>
-                <form action="pro" method="get">
-                  <input name="find" type="text" placeholder="cari nama ">
-                  <button type="submit" class="btn btn-success">cari</button>
-                </form>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-8">
-        <div class="page-header float-right">
-            <div class="page-title">
-                <ol class="breadcrumb text-right">
-                    <li class="active"><i class="fa fa-dashboard"></i></li>
-                </ol>
-            </div>
-        </div>
-    </div>
-</div>
 
-@endsection
 @section('content')
-<div class="content mt-3">
 
-    <div class="animated fadeIn">
+<style>
+.btn-group button {
+  background-color: #4CAF50; /* Green background */
+  border: 1px white; /* Green border */
+  color: white; /* White text */
+  padding: 1px 1px; /* Some padding */
+  cursor: pointer; /* Pointer/hand icon */
+  float: right; /* Float the buttons side by side */
+}
 
-        @if (session('status'))
-            <div class="alert alert-success">
-                {{ session('status') }}
-            </div>
-        @endif
-        <div class="card ">
-            <div class="card-header bg-danger">
-                <div class="pull-left">
-                    <strong>kategori</strong>
+/* Clear floats (clearfix hack) */
+.btn-group:after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.btn-group button:not(:last-child) {
+  border-right: none; /* Prevent double borders */
+}
+
+/* Add a background color on hover */
+.btn-group button:hover {
+  background-color: #3e8e41;
+}
+</style>
+
+<!-- //--------------------------------------------------------------- -->
+            <div class="col-sm-12">
+            <h5 class="mb-0" ><strong></strong></h5>
+                <span class="text-secondary"><i class="fa fa-angle-right"></i> </span>
+                <!--Datatable-->
+                <div class="mt-1 mb-3 p-3 button-container bg-white border shadow-sm">
+                    <h6 class="mb-2"></h6>
+            <div class="table-responsive">
+            <a href="/kategori/ad"><button class="btn btn-success shadow">Tambah</button></a>
+            <form action="/kategori" method="get">
+            <div class="form-group row">
+                <div class="col-sm-10">
+                    <input class="form-control" type="text" placeholder="Cari...">
                 </div>
-
-                <div class="pull-right">
-                  
-                    <a href="{{url('kategori/ad')}}" class="btn btn-success btn-sm">
-                      <i class="fa fa-pluss"> Add</i>
-                    </a>
+                <div class="">
+                <button type="submit" class="btn btn-success icon-round shadow"><i class="fa fa-search"></i> </button>
                 </div>
             </div>
-            <div class="card-body table-responsive">
-
+            </form>
                 <table class="table table-bordered  ">
                     <thead>
                         <tr>
                             <th>No.</th>
                             <th>
-
                                   <form action="kategori" method="get">
                                   <input type="hidden" name="A" type="text" value="kd_kategori">
-                                  <button type="submit" class="btn btn-primary">A</button>
+                                  <div class="btn-group pull-right">
+                                  <div class="pull-right">KODE</div>
+                                  <div class="pull-right text-white">123456789123456789123456</div>
+                                  <button type="submit">A</button>
                                   </form>
-
                                   <form action="kategori" method="get">
                                   <input type="hidden" name="B" type="text" value="kd_kategori">
-                                  <button type="submit" class="btn btn-primary">Z</button>
+                                  <button type="submit" >Z</button>
+                                  </div>
                                   </form>
-
-
                             </th>
-                            <th> 
-
+                            <th>
                                   <form action="kategori" method="get">
-                                  <input type="hidden" name="A" type="text" value="nama_kategori">
-                                  <button type="submit" class="btn btn-primary">A</button>
+                                  <input type="hidden" name="A" type="text" value="kd_kategori">
+                                  <div class="btn-group pull-right">
+                                  <div>NAMA</div>
+                                  <div class="pull-right text-white">12345678912</div>
+                                  <button type="submit">A</button>
                                   </form>
-
                                   <form action="kategori" method="get">
-                                  <input type="hidden" name="B" type="text" value="nama_kategori">
-                                  <button type="submit" class="btn btn-primary">Z</button>
+                                  <input type="hidden" name="B" type="text" value="kd_kategori">
+                                  <button type="submit" >Z</button>
+                                  </div>
                                   </form>
                                   </th>
-
-                           
-                            <th>   </th>
+                                  <th>
+                                  Action
+                                  </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -91,9 +92,9 @@
                              <td>{{ $loop->iteration }}</td>
                              <td>{{$item->kd_kategori}}</td>
                              <td>{{$item->nama_kategori}}</td>
-                            
+
                              <td>
-                                <a href="{{url('kategori/edit/'.$item->id)}}" class="btn btn-warning btn-sm"> 
+                                <a href="{{url('kategori/edit/'.$item->id)}}" class="btn btn-warning btn-sm">
                                      <i class="fa fa-pencil "> </i>
                                  </a>
                             <form action="{{url('kategori/'.$item->id)}}" method="post" class="d-inline" onsubmit="return confirm('yakin hapus data')">
@@ -123,5 +124,5 @@
         </div>
     </div>
 </div>
-    
+
 @endsection

@@ -17,6 +17,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('produk','produkctrl@awal');
+Route::get('produk/ad','produkctrl@add');
+Route::post('produk/addp','produkctrl@addProcess');
+Route::get('produk/edit/{id}','produkctrl@edit');
+Route::patch('produk/{id}','produkctrl@editProcess');
+Route::delete('produk/{id}','produkctrl@delete');
 Route::get('kategori','kategorictrl@awal');
 Route::get('kategori/ad','kategorictrl@add');
 Route::post('kategori/addp','kategorictrl@addProcess');
