@@ -14,19 +14,19 @@ class produkctrl extends Controller
 
         if($request->has('A'))
         {
-        $produk = produk::with('kategori')->orderBy($request->A,'asc')->paginate(4);
+        $produk = produk::with('kategori')->orderBy($request->A,'asc')->paginate(2);
         return view("produk.index",["produk" => $produk]);
         }else if($request->has('B'))
         {
-            $produk = produk::with('kategori')->orderBy($request->B,'desc')->paginate(4);
+            $produk = produk::with('kategori')->orderBy($request->B,'desc')->paginate(2);
             return view("produk.index",["produk" => $produk]);
 
         }else if ($request->has('find')){
-            $produk = produk::with('kategori')->where("nama","like","%".$request->find."%")->paginate(4);
+            $produk = produk::with('kategori')->where("nama","like","%".$request->find."%")->orWhere("kd_brg","like","%".$request->find."%")->orWhere("kd_kategori","like","%".$request->find."%")->paginate(2);
             return view("produk.index",["produk" => $produk]);
 
         }else{
-            $produk = produk::with('kategori')->paginate(4);
+            $produk = produk::with('kategori')->paginate(2);
             return view("produk.index",["produk" => $produk]);
         }
     }

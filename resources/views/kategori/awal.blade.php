@@ -42,7 +42,7 @@
             <form action="/kategori" method="get">
             <div class="form-group row">
                 <div class="col-sm-10">
-                    <input class="form-control" type="text" placeholder="Cari...">
+                    <input class="form-control" name="find" type="text" placeholder="Cari...">
                 </div>
                 <div class="">
                 <button type="submit" class="btn btn-success icon-round shadow"><i class="fa fa-search"></i> </button>

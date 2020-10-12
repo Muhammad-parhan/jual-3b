@@ -12,20 +12,20 @@ class kategorictrl extends Controller
     {
 
 
-    $kategori = DB::table("kategoris")->orderBy($request->A,'asc')->paginate(1);
+    $kategori = DB::table("kategoris")->orderBy($request->A,'asc')->paginate(3);
 
     return view("kategori.awal",["kategori" => $kategori]);
     }else if($request->has('B'))
     {
-        $kategori = DB::table("kategoris")->orderBy($request->B,'desc')->paginate(1);
+        $kategori = DB::table("kategoris")->orderBy($request->B,'desc')->paginate(3);
         return view("kategori.awal",["kategori" => $kategori]);
 
     }else if ($request->has('find')){
-        $kategori = DB::table("kategoris")->where("nama_kategori","like","%".$request->find."%")->paginate(1);
+        $kategori = DB::table("kategoris")->where("nama_kategori","like","%".$request->find."%")->orWhere("kd_kategori","like","%".$request->find."%")->paginate(3);
         return view("kategori.awal",["kategori" => $kategori]);
 
     }else{
-        $kategori = DB::table("kategoris")->paginate(1);
+        $kategori = DB::table("kategoris")->paginate(3);
         return view("kategori.awal",["kategori" => $kategori]);
 
     }
